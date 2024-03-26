@@ -1,9 +1,7 @@
--- Create a ScreenGui to hold the UI elements
 local gui = Instance.new("ScreenGui")
 gui.Name = "FPSIncreaseUI"
 gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
--- Create a Frame to hold the UI elements
 local frame = Instance.new("Frame")
 frame.Size = UDim2.new(0, 250, 0, 200)
 frame.Position = UDim2.new(0.5, -125, 0.5, -100)
@@ -14,7 +12,6 @@ frame.BorderSizePixel = 0
 frame.ClipsDescendants = true
 frame.Parent = gui
 
--- Create FPS Increase button
 local fpsButton = Instance.new("TextButton")
 fpsButton.Size = UDim2.new(0, 200, 0, 50)
 fpsButton.Position = UDim2.new(0.5, -100, 0.1, 0)
@@ -26,7 +23,6 @@ fpsButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 fpsButton.Text = "FPS Increase"
 fpsButton.Parent = frame
 
--- Function to change appearance of all parts to white and turn off materials
 local function increaseFPS()
     -- Set parts color and material
     for _, obj in ipairs(game.Workspace:GetDescendants()) do
@@ -36,22 +32,22 @@ local function increaseFPS()
         end
     end
 
-    -- Disable lighting effects
+
     game.Lighting.OutdoorAmbient = Color3.new(1, 1, 1)
     game.Lighting.Ambient = Color3.new(1, 1, 1)
     game.Lighting.Brightness = 2
     game.Lighting.GlobalShadows = false
 end
 
--- Function to close the UI
+
 local function closeUI()
     gui:Destroy()
 end
 
--- Connect the button to the function
+
 fpsButton.MouseButton1Click:Connect(increaseFPS)
 
--- Create close button
+
 local closeButton = Instance.new("TextButton")
 closeButton.Size = UDim2.new(0, 30, 0, 30)
 closeButton.Position = UDim2.new(1, -30, 0, 0)
@@ -64,5 +60,5 @@ closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 closeButton.Text = "X"
 closeButton.Parent = frame
 
--- Connect the close button to the function
+
 closeButton.MouseButton1Click:Connect(closeUI)
