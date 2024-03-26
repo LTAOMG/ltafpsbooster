@@ -1,32 +1,30 @@
 local gui = Instance.new("ScreenGui")
 gui.Name = "FPSIncreaseUI"
+gui.IgnoreGuiInset = true -- Ensures the UI is not affected by mobile device insets
 gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
 local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 300, 0, 250)
-frame.Position = UDim2.new(0.5, -150, 0.5, -125)
+frame.Size = UDim2.new(0, 250, 0, 250)
+frame.Position = UDim2.new(0.5, -125, 0.5, -125)
 frame.AnchorPoint = Vector2.new(0.5, 0.5)
 frame.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
 frame.BackgroundTransparency = 0.8
 frame.BorderSizePixel = 0
-frame.ClipsDescendants = true
 frame.Parent = gui
-frame.ZIndex = 2 -- Ensure the frame is above other GUI elements
 
 -- Function to create buttons
 local function createButton(name, text, position, onClick)
     local button = Instance.new("TextButton")
     button.Name = name
-    button.Size = UDim2.new(0, 200, 0, 50)
+    button.Size = UDim2.new(0.8, 0, 0, 50) -- Larger button size
     button.Position = position
     button.BackgroundColor3 = Color3.fromRGB(74, 143, 255)
     button.BorderSizePixel = 0
     button.Font = Enum.Font.SourceSans
-    button.TextSize = 20
+    button.TextSize = 24 -- Larger text size
     button.TextColor3 = Color3.fromRGB(255, 255, 255)
     button.Text = text
     button.Parent = frame
-    button.ZIndex = 3 -- Ensure the button is above the background frame
     
     -- Add hover effect
     button.MouseEnter:Connect(function()
@@ -60,20 +58,10 @@ local function closeUI()
     gui:Destroy()
 end
 
-local fpsButton = createButton("FPSButton", "FPS Increase", UDim2.new(0.5, -100, 0.1, 0), increaseFPS)
-local closeButton = createButton("CloseButton", "X", UDim2.new(1, -30, 0, 0), closeUI)
-closeButton.AnchorPoint = Vector2.new(1, 0)
-closeButton.Position = UDim2.new(1, 0, 0, 0)
+-- Create buttons
+local fpsButton = createButton("FPSButton", "Increase FPS", UDim2.new(0.5, -125, 0.3, 0), increaseFPS)
+local closeButton = createButton("CloseButton", "Close", UDim2.new(0.5, -125, 0.5, 0), closeUI)
 
-local paintingText = Instance.new("TextLabel")
-paintingText.Size = UDim2.new(0, 200, 0, 30)
-paintingText.Position = UDim2.new(0.5, -100, 0.25, 0)
-paintingText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-paintingText.BorderSizePixel = 0
-paintingText.Font = Enum.Font.SourceSans
-paintingText.TextSize = 16
-paintingText.TextColor3 = Color3.fromRGB(255, 255, 255)
-paintingText.TextWrapped = true
-paintingText.Text = "Painting Part: "
-paintingText.Parent = frame
-paintingText.ZIndex = 3 -- Ensure the text label is above the background frame
+-- Center the frame and buttons horizontally
+fpsButton.Position = UDim2.new(0.5, -fpsButton.Size.X.Offset / 2, 0.3, 0)
+closeButton.Position = UDim2.new(0.5, -closeButton.Size.X.Offset / 2, 0.5, 0)
