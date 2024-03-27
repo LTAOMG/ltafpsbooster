@@ -22,20 +22,6 @@ disableButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 disableButton.Text = "Disable"
 disableButton.Parent = mainFrame
 
-local function enableWhiteScreen()
-    mainFrame.Visible = true
-    for _, obj in ipairs(game.Workspace:GetDescendants()) do
-        if obj:IsA("BasePart") then
-            obj.Color = Color3.new(1, 1, 1)
-            obj.Material = Enum.Material.SmoothPlastic
-        end
-    end
-    game.Lighting.OutdoorAmbient = Color3.new(1, 1, 1)
-    game.Lighting.Ambient = Color3.new(1, 1, 1)
-    game.Lighting.Brightness = 2
-    game.Lighting.GlobalShadows = false
-end
-
 local function disableWhiteScreen()
     mainFrame.Visible = false
 end
@@ -52,6 +38,21 @@ fpsButton.TextSize = 20
 fpsButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 fpsButton.Text = "FPS Increase"
 fpsButton.Parent = mainFrame
+
+local function enableWhiteScreen()
+    mainFrame.Visible = true
+    local baseParts = game.Workspace:GetDescendants()
+    for _, obj in ipairs(baseParts) do
+        if obj:IsA("BasePart") then
+            obj.Color = Color3.new(1, 1, 1)
+            obj.Material = Enum.Material.SmoothPlastic
+        end
+    end
+    game.Lighting.OutdoorAmbient = Color3.new(1, 1, 1)
+    game.Lighting.Ambient = Color3.new(1, 1, 1)
+    game.Lighting.Brightness = 2
+    game.Lighting.GlobalShadows = false
+end
 
 local function increaseFPS()
     enableWhiteScreen()
