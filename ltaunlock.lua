@@ -7,7 +7,7 @@ mainFrame.Size = UDim2.new(1, 0, 1, 0)
 mainFrame.Position = UDim2.new(0, 0, 0, 0)
 mainFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 mainFrame.BorderSizePixel = 0
-mainFrame.Visible = false -- Initially not visible
+mainFrame.Visible = true -- Initially not visible
 mainFrame.Parent = gui
 
 local disableButton = Instance.new("TextButton")
