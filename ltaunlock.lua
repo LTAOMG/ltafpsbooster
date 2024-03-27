@@ -1,75 +1,118 @@
-local gui = Instance.new("ScreenGui")
-gui.Name = "FPSIncreaseUI"
-gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+--@empireinfinity
 
-local mainFrame = Instance.new("Frame")
-mainFrame.Size = UDim2.new(1, 0, 1, 0)
-mainFrame.Position = UDim2.new(0, 0, 0, 0)
-mainFrame.BackgroundColor3 = Color3.new(1, 1, 1)
-mainFrame.BorderSizePixel = 0
-mainFrame.Visible = true -- Initially not visible
-mainFrame.Parent = gui
+local sv = Instance.new("ScreenGui")
+local BG = Instance.new("Frame")
+local Some = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local TextLabel = Instance.new("TextLabel")
+local TextLabel_2 = Instance.new("TextLabel")
+local ImageLabel = Instance.new("ImageLabel")
+local TextLabel_3 = Instance.new("TextLabel")
+local SomeShadow = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
 
-local disableButton = Instance.new("TextButton")
-disableButton.Size = UDim2.new(0, 200, 0, 50)
-disableButton.Position = UDim2.new(0.5, -100, 0.5, -25)
-disableButton.AnchorPoint = Vector2.new(0.5, 0.5)
-disableButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-disableButton.BorderSizePixel = 0
-disableButton.Font = Enum.Font.SourceSans
-disableButton.TextSize = 20
-disableButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-disableButton.Text = "Disable"
-disableButton.Parent = mainFrame
+--@preloadIMAGE
+ImageLabel.Image = "http://www.roblox.com/asset/?id=2248101918"
 
-local function disableWhiteScreen()
-    mainFrame.Visible = false
+sv.Name = "sv"
+sv.Parent = game.CoreGui
+sv.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+BG.Name = "BG"
+BG.Parent = sv
+BG.BackgroundColor3 = Color3.fromRGB(7, 47, 95)
+BG.Position = UDim2.new(0, 0, -0.0502008051, 0)
+BG.Size = UDim2.new(1, 0, 1.10040164, 0)
+BG.Visible = false
+
+Some.Name = "Some"
+Some.Parent = BG
+Some.BackgroundColor3 = Color3.fromRGB(18, 97, 160)
+Some.Position = UDim2.new(0.030505348, 0, 0.10531909, 0)
+Some.Size = UDim2.new(0, 240, 0, 424)
+
+UICorner.Parent = Some
+
+TextLabel.Parent = Some
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Position = UDim2.new(0.0833333358, 0, 0.0424528308, 0)
+TextLabel.Size = UDim2.new(0, 200, 0, 50)
+TextLabel.Font = Enum.Font.GothamBold
+TextLabel.Text = "Saving GPU/CPU"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 22.000
+TextLabel.TextWrapped = true
+
+TextLabel_2.Parent = Some
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.Position = UDim2.new(0.0833333358, 0, 0.120283008, 0)
+TextLabel_2.Size = UDim2.new(0, 200, 0, 59)
+TextLabel_2.Font = Enum.Font.Gotham
+TextLabel_2.Text = "Scientists state that conserving GPU resources is crucial for optimizing performance and maximizing efficiency in computing systems."
+TextLabel_2.TextColor3 = Color3.fromRGB(209, 209, 209)
+TextLabel_2.TextScaled = true
+TextLabel_2.TextSize = 14.000
+TextLabel_2.TextWrapped = true
+
+ImageLabel.Parent = Some
+ImageLabel.BackgroundColor3 = Color3.fromRGB(164, 163, 166)
+ImageLabel.BackgroundTransparency = 1.000
+ImageLabel.Position = UDim2.new(0, 31, 0, 129)
+ImageLabel.Size = UDim2.new(0, 178, 0, 178)
+ImageLabel.Image = "http://www.roblox.com/asset/?id=2248101918"
+ImageLabel.ScaleType = Enum.ScaleType.Crop
+
+TextLabel_3.Parent = Some
+TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.BackgroundTransparency = 1.000
+TextLabel_3.Position = UDim2.new(0.0833333433, 0, 0.778301835, 0)
+TextLabel_3.Size = UDim2.new(0, 200, 0, 24)
+TextLabel_3.Font = Enum.Font.Unknown
+TextLabel_3.Text = "beep boop"
+TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.TextSize = 10.000
+TextLabel_3.TextWrapped = true
+
+SomeShadow.Name = "SomeShadow"
+SomeShadow.Parent = BG
+SomeShadow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+SomeShadow.BackgroundTransparency = 0.250
+SomeShadow.Position = UDim2.new(0.0426830649, 0, 0.117689334, 0)
+SomeShadow.Size = UDim2.new(0, 240, 0, 424)
+SomeShadow.ZIndex = -1
+
+UICorner_2.Parent = SomeShadow
+
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+
+function savegpu(fps)
+setfpscap(fps)
+RunService:Set3dRenderingEnabled(false)
 end
 
-disableButton.MouseButton1Click:Connect(disableWhiteScreen)
+function unsavegpu()
+setfpscap(360)
+RunService:Set3dRenderingEnabled(true)
+end
 
-local fpsButton = Instance.new("TextButton")
-fpsButton.Size = UDim2.new(0, 200, 0, 50)
-fpsButton.Position = UDim2.new(0.5, -100, 0.1, 0)
-fpsButton.BackgroundColor3 = Color3.fromRGB(74, 143, 255)
-fpsButton.BorderSizePixel = 0
-fpsButton.Font = Enum.Font.SourceSans
-fpsButton.TextSize = 20
-fpsButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-fpsButton.Text = "FPS Increase"
-fpsButton.Parent = mainFrame
-
-local function enableWhiteScreen()
-    mainFrame.Visible = true
-    local baseParts = game.Workspace:GetDescendants()
-    for _, obj in ipairs(baseParts) do
-        if obj:IsA("BasePart") then
-            obj.Color = Color3.new(1, 1, 1)
-            obj.Material = Enum.Material.SmoothPlastic
-        end
+if _G.GPUSave then
+    if _G.LowFPS then
+        savegpu(10)
+    else
+        savegpu(60)
     end
-    game.Lighting.OutdoorAmbient = Color3.new(1, 1, 1)
-    game.Lighting.Ambient = Color3.new(1, 1, 1)
-    game.Lighting.Brightness = 2
-    game.Lighting.GlobalShadows = false
+else
+    unsavegpu()
 end
 
-local function increaseFPS()
-    enableWhiteScreen()
+while wait() do
+    if _G.SmoothForEyes and _G.GPUSave then
+        BG.Visible = true
+        ImageLabel.Rotation = ImageLabel.Rotation + 5
+    else
+        BG.Visible = false
+    end
 end
-
-fpsButton.MouseButton1Click:Connect(increaseFPS)
-
-local closeButton = Instance.new("TextButton")
-closeButton.Size = UDim2.new(0, 30, 0, 30)
-closeButton.Position = UDim2.new(1, -30, 0, 0)
-closeButton.AnchorPoint = Vector2.new(1, 0)
-closeButton.BackgroundColor3 = Color3.fromRGB(255, 99, 71)
-closeButton.BorderSizePixel = 0
-closeButton.Font = Enum.Font.SourceSans
-closeButton.TextSize = 20
-closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-closeButton.Text = "X"
-closeButton.Parent = mainFrame
-
-closeButton.MouseButton1Click:Connect(disableWhiteScreen)
