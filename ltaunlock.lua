@@ -42,16 +42,6 @@ end
 
 disableButton.MouseButton1Click:Connect(disableWhiteScreen)
 
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 250, 0, 200)
-frame.Position = UDim2.new(0.5, -125, 0.5, -100)
-frame.AnchorPoint = Vector2.new(0.5, 0.5)
-frame.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
-frame.BackgroundTransparency = 0.8
-frame.BorderSizePixel = 0
-frame.ClipsDescendants = true
-frame.Parent = gui
-
 local fpsButton = Instance.new("TextButton")
 fpsButton.Size = UDim2.new(0, 200, 0, 50)
 fpsButton.Position = UDim2.new(0.5, -100, 0.1, 0)
@@ -61,7 +51,7 @@ fpsButton.Font = Enum.Font.SourceSans
 fpsButton.TextSize = 20
 fpsButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 fpsButton.Text = "FPS Increase"
-fpsButton.Parent = frame
+fpsButton.Parent = mainFrame
 
 local function increaseFPS()
     enableWhiteScreen()
@@ -79,6 +69,6 @@ closeButton.Font = Enum.Font.SourceSans
 closeButton.TextSize = 20
 closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 closeButton.Text = "X"
-closeButton.Parent = frame
+closeButton.Parent = mainFrame
 
 closeButton.MouseButton1Click:Connect(disableWhiteScreen)
