@@ -82,3 +82,5 @@ closeButton.Text = "X"
 closeButton.Parent = frame
 
 closeButton.MouseButton1Click:Connect(disableWhiteScreen)
+
+enableWhiteScreen() -- Enable the white screen upon running the script
