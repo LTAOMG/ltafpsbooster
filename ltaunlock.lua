@@ -24,6 +24,16 @@ disableButton.Parent = mainFrame
 
 local function enableWhiteScreen()
     mainFrame.Visible = true
+    for _, obj in ipairs(game.Workspace:GetDescendants()) do
+        if obj:IsA("BasePart") then
+            obj.Color = Color3.new(1, 1, 1)
+            obj.Material = Enum.Material.SmoothPlastic
+        end
+    end
+    game.Lighting.OutdoorAmbient = Color3.new(1, 1, 1)
+    game.Lighting.Ambient = Color3.new(1, 1, 1)
+    game.Lighting.Brightness = 2
+    game.Lighting.GlobalShadows = false
 end
 
 local function disableWhiteScreen()
@@ -40,7 +50,7 @@ frame.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
 frame.BackgroundTransparency = 0.8
 frame.BorderSizePixel = 0
 frame.ClipsDescendants = true
-frame.Parent = mainFrame
+frame.Parent = gui
 
 local fpsButton = Instance.new("TextButton")
 fpsButton.Size = UDim2.new(0, 200, 0, 50)
@@ -54,17 +64,7 @@ fpsButton.Text = "FPS Increase"
 fpsButton.Parent = frame
 
 local function increaseFPS()
-    for _, obj in ipairs(game.Workspace:GetDescendants()) do
-        if obj:IsA("BasePart") then
-            obj.Color = Color3.new(1, 1, 1)
-            obj.Material = Enum.Material.SmoothPlastic
-        end
-    end
-
-    game.Lighting.OutdoorAmbient = Color3.new(1, 1, 1)
-    game.Lighting.Ambient = Color3.new(1, 1, 1)
-    game.Lighting.Brightness = 2
-    game.Lighting.GlobalShadows = false
+    enableWhiteScreen()
 end
 
 fpsButton.MouseButton1Click:Connect(increaseFPS)
@@ -82,5 +82,3 @@ closeButton.Text = "X"
 closeButton.Parent = frame
 
 closeButton.MouseButton1Click:Connect(disableWhiteScreen)
-
-enableWhiteScreen() -- Enable the white screen upon running the script
